@@ -1,3 +1,19 @@
+--sample procedure for later use
+
+CREATE PROCEDURE updtdemployee
+       @employeeID INT
+  AS
+    BEGIN
+     UPDATE employee 
+     SET status='Y' 
+     WHERE Emp_Code = @employeeID
+    END
+
+
+
+
+------------
+
 USE [lwglobaltest]
 GO
 --drop table [dbo].[PlayerMain]
@@ -306,10 +322,14 @@ select * from playercountries
 CREATE TABLE [dbo].[Commodities](
 	[CommodityID] [int] IDENTITY(1,1) NOT NULL,
 	[CommodityCode] [varchar](7) NOT NULL,
-	[CommLevel] [int] NOT NULL,
-	[CurrentCostUSD] [money] NOT NULL,
+ 	[CommodityDesc] [varchar](25) NOT NULL,
+	[BaseCostUSD] [money] NOT NULL,
 	[Quantity] [float] NOT NULL DEFAULT (0),
-	[AvailQty] [float] NOT NULL DEFAULT (0),
+	[CanBeRefined] [int] NOT NULL,
+	[IndustryType] [Int] NOT NULL,
+	[Unit] [varchar](3) NOT NULL,
+	[Country]  [varchar](2) NOT NULL,
+	[ProcessTo] [int] NOT NULL
  CONSTRAINT [PK_CommodityID] PRIMARY KEY CLUSTERED 
 (
 	[CommodityID] ASC
@@ -320,9 +340,9 @@ GO
 Insert into Commodities
 (commoditycode,CommLevel,CurrentCostUSD,Quantity,AvailQty)
 Values
-('CRUDOIL','0','54','100000','1000'),
-('RAWCOAL','0','20','100000','1000'),
-('IRONFER','0','250','100000','1000')
+('Coal','Raw Coal','1','85000','1','1','kg','BR','7'),
+('Oil','Crude Oil','1','85000','1','1','kg','BR','8'),
+('Iron','Iron Ferrite','1','85000','1','1','kg','BR','9'),
 
 GO
 

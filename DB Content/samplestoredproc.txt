@@ -1,8 +1,0 @@
-CREATE PROCEDURE updtdemployee
-       @employeeID INT
-  AS
-    BEGIN
-     UPDATE employee 
-     SET status='Y' 
-     WHERE Emp_Code = @employeeID
-    END
